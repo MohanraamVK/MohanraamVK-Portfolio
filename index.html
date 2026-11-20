@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mohanraam Vasanthi Krishna | Software Engineer</title>
+    <meta
+      name="description"
+      content="Mohanraam Vasanthi Krishna, software engineer and MSc Computer Science student at Chalmers, Gothenburg."
+    />
+    <meta name="author" content="Mohanraam Vasanthi Krishna" />
+    <meta property="og:title" content="Mohanraam Vasanthi Krishna" />
+    <meta
+      property="og:description"
+      content="Software engineer, MSc student at Chalmers. Gothenburg, Sweden."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // set theme before first paint to avoid a flash
+      try {
+        var t = localStorage.getItem("theme");
+        if (!t) t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        if (t === "light") document.documentElement.classList.add("light");
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
