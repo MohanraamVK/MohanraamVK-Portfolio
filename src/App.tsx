@@ -55,7 +55,7 @@ export default function App() {
             {sections.map((id) => (
               <li key={id}>
                 <a href={`#${id}`} className={active === id ? "text-fg" : "text-dim hover:text-fg"}>
-                  {id}
+                  {id[0].toUpperCase() + id.slice(1)}
                 </a>
               </li>
             ))}
@@ -67,7 +67,7 @@ export default function App() {
       <main id="top">
         <Hero />
 
-        <Section id="about" n="01" title="About">
+        <Section id="about" title="About">
           <div className="grid gap-10 md:grid-cols-[1.6fr_1fr]">
             <div className="space-y-4 text-dim">
               <p>
@@ -76,9 +76,10 @@ export default function App() {
                 debugging things in production.
               </p>
               <p>
-                In 2025 I moved to Gothenburg for a master's at Chalmers, on the Algorithms,
-                Languages and Logic track. I'm looking for a software role in Sweden, ideally
-                backend or full-stack, but I'm open to other areas too.
+                In 2025 I moved to Gothenburg for a master's at Chalmers (Algorithms, Languages and
+                Logic), where I've mostly been taking security, programming languages and ML
+                courses. Lately I've spent a lot of weekends at hackathons. I'm looking for a
+                full-time role in full-stack, AI/ML or software security, starting summer 2027.
               </p>
               <p>
                 Outside of code I play football, handball and badminton, do the daily Wordle, play
@@ -98,7 +99,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map(([group, items]) => (
               <div key={group}>
                 <h3 className="label">{group}</h3>
@@ -108,7 +109,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section id="work" n="02" title="Work">
+        <Section id="work" title="Work">
           <ol className="relative space-y-10 border-l border-line pl-6">
             {experience.map((job) => (
               <li key={job.period} className="relative">
@@ -129,17 +130,31 @@ export default function App() {
           </ol>
         </Section>
 
-        <Section id="projects" n="03" title="Projects">
+        <Section id="projects" title="Projects">
           <div className="divide-y divide-line border-y border-line">
             {projects.map((p) => (
               <article key={p.title} className="grid gap-3 py-7 md:grid-cols-[220px_1fr]">
                 <div>
                   <h3 className="text-xl">{p.title}</h3>
                   <p className="mt-1 font-mono text-xs text-accent">{p.tag}</p>
+                  <p className="font-mono text-xs text-dim">{p.date}</p>
                 </div>
                 <div>
                   <p className="text-dim">{p.summary}</p>
-                  <p className="mt-3 font-mono text-xs text-dim">{p.stack.join(" / ")}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1">
+                    <p className="font-mono text-xs text-dim">{p.stack.join(" / ")}</p>
+                    {p.links?.map((l) => (
+                      <a
+                        key={l.url}
+                        href={l.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-accent hover:underline"
+                      >
+                        {l.label} <ArrowUpRight size={14} />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}
@@ -153,7 +168,7 @@ export default function App() {
           </p>
         </Section>
 
-        <Section id="education" n="04" title="Education">
+        <Section id="education" title="Education">
           <ul className="space-y-6">
             {education.map((e) => (
               <li key={e.degree} className="flex flex-wrap justify-between gap-2">
@@ -175,7 +190,7 @@ export default function App() {
           </details>
         </Section>
 
-        <Section id="contact" n="05" title="Contact">
+        <Section id="contact" title="Contact">
           <p className="max-w-xl text-lg text-dim">
             Hiring in Sweden, or just want to talk about Java, networks or football? Send me an
             email. I usually answer within a day.
@@ -252,21 +267,10 @@ function Hero() {
   );
 }
 
-function Section({
-  id,
-  n,
-  title,
-  children,
-}: {
-  id: string;
-  n: string;
-  title: string;
-  children: ReactNode;
-}) {
+function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="wrap scroll-mt-16 py-16 md:py-20">
       <h2 className="mb-10 flex items-baseline gap-4 text-3xl md:text-4xl">
-        <span className="font-mono text-sm text-accent">{n}</span>
         {title}
         <span className="h-px flex-1 bg-line" />
       </h2>
