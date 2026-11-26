@@ -2,7 +2,7 @@
 
 My personal site: CV, work, projects and contact details in one place.
 
-**Live:** https://mohanraamvk.github.io/mohanraamvk-portfolio/
+**Live:** https://mohanraamvk.github.io/MohanraamVK-Portfolio/
 
 ## Stack
 
